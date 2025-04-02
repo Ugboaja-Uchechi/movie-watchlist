@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 export default async function MovieDetail({ params }) {
   const { id } = params;
-  const API_KEY = process.env.NEXT_TMDB_API_KEY;
+  const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
   const movieResponse = await axios.get(
-    `https://api.themoviedb.org/3/movie/${id}popular?api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
   );
   const movie = movieResponse.data;
 
