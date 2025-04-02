@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 
 export default async function Home() {
   const API_KEY = process.env.NEXT_TMDB_API_KEY;
@@ -14,11 +15,14 @@ export default async function Home() {
       <div>
         <ul>
           {data.map((movie: any) => (
-            <li key={movie.id}>
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
-              <h2>{movie.title}</h2>
-              <p>{movie.overview}</p>
-            </li>
+            <Link href={`/movie/${movie.id}`} key={movie.id}>
+              <li>
+                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+                <h2>{movie.title}</h2>
+                <p>{movie.overview}</p>
+              </li>
+            </Link>
+
           ))}
         </ul>
       </div>

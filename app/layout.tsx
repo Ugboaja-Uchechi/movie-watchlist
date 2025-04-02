@@ -28,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <aside className="bg-[rgba(255,_255,_255,_0.02)] shadow-[1px_2px_6px_1px] absolute h-full w-[calc(5rem_+_7vw)] backdrop-filter backdrop-blur-[81px] flex flex-col justify-center items-center gap-16">
+        <aside className="bg-[rgba(255,_255,_255,_0.02)] shadow-[1px_2px_6px_1px] fixed h-full w-[calc(5rem_+_7vw)] backdrop-filter backdrop-blur-[81px] flex flex-col justify-center items-center gap-16">
           <div>
             <h1>Home</h1>
           </div>
