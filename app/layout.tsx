@@ -28,18 +28,24 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <aside className="bg-[rgba(255,_255,_255,_0.02)] shadow-[1px_2px_6px_1px] fixed h-full w-[calc(5rem_+_7vw)] backdrop-filter backdrop-blur-[81px] flex flex-col justify-center items-center gap-16">
-          <div>
-            <Link href="/">Home</Link>
+        <div className="">
+          <aside className="bg-[rgba(255,_255,_255,_0.02)] shadow-[1px_2px_6px_1px] lg:block md:w-[25%] lg:w-[18%] h-screen fixed top-0 p-5 px-0 flex flex-col justify-center items-center gap-16 z-50 pt-0 backdrop-filter backdrop-blur-[81px]">
+            <div>
+              <Link href="/">Home</Link>
+            </div>
+            <div>
+              <Link href="/watchlist">Watchlist</Link>
+            </div>
+            <div>
+              <h1>Watched</h1>
+            </div>
+          </aside>
+          <div className="p-5 lg:p-[40px] lg:pt-[50px] min-h-screen w-full lg:w-[82%] ml-auto lg:rounded-s-[10px] z-50 pb-[100px] lg:pb-[100px]">
+            {children}
           </div>
-          <div>
-            <Link href="/watchlist">Watchlist</Link>
-          </div>
-          <div>
-            <h1>Watched</h1>
-          </div>
-        </aside>
-        {children}
+        </div>
+
+
       </body>
     </html>
   );

@@ -57,22 +57,20 @@ export default function Home() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
-      <div>
-        <input type="text" value={searchMovies} onChange={handleInputChange} />
+    <div className="font-[family-name:var(--font-geist-sans)] px-16">
+      <div className="flex justify-end">
+        <input type="text" value={searchMovies} onChange={handleInputChange} placeholder="Search movies" className="border border-amber-100 rounded-md p-2" />
       </div>
       <h1>Trending Movies</h1>
 
-      <div>
-        <ul>
-
-          // renders the filtered movies instead of data variable
+      <div className="">
+         {/* renders the filtered movies instead of data variable */}
+        <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-10">
           {filteredMovies.map((movie: any) => (
-            <Link href={`/movie/${movie?.id}`} key={movie.id}>
+            <Link href={`/movie/${movie?.id}`} key={movie?.id}>
               <li>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
+                <img src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`} alt="" />
                 <h2>{movie?.title}</h2>
-                <p>{movie?.overview}</p>
               </li>
             </Link>
 
