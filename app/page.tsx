@@ -24,6 +24,7 @@ export default function Home() {
         const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
         const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
         const data = response.data.results;
+        console.log(data)
         setMovies(data);
         setFilteredMovies(data);
         setLoading(false);
@@ -61,7 +62,7 @@ export default function Home() {
       <div className="flex justify-end">
         <input type="text" value={searchMovies} onChange={handleInputChange} placeholder="Search movies" className="border border-amber-100 rounded-md p-2" />
       </div>
-      <h1>Trending Movies</h1>
+      <h1 className="text-center font-medium text-[calc(1.5rem_+_2vw)] my-10">Trending Movies</h1>
 
       <div className="">
          {/* renders the filtered movies instead of data variable */}
@@ -69,8 +70,15 @@ export default function Home() {
           {filteredMovies.map((movie: any) => (
             <Link href={`/movie/${movie?.id}`} key={movie?.id}>
               <li>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`} alt="" />
+                <img src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`} alt={movie?.title} className=" max-w-[320px] w-full max-h-[390px] h-full rounded-lg object-cover" />
                 <h2>{movie?.title}</h2>
+                <div className="flex items-center gap-4">
+                  <p>{movie?.vote_average.toFixed(2)}</p>
+                  <div>
+                    <hr className="border-2 w-12" />
+                  </div>
+                  <p>{movie?.release_date.slice(0, 4)}</p>
+                </div>
               </li>
             </Link>
 
