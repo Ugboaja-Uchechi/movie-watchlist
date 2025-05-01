@@ -3,13 +3,9 @@
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Bookmark from "./_components/Bookmark";
 
 export default function Home() {
-  // const API_KEY = process.env.NEXT_TMDB_API_KEY;
-  // const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
-  // const data = await response.data.results;
-  // console.log("hello", data);
-
 
   const [movies, setMovies] = useState([]);
   // updates when a user types in the search bar
@@ -22,7 +18,7 @@ export default function Home() {
     const fetchMovies = async () => {
       try {
         const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+        const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
         const data = response.data.results;
         console.log(data)
         setMovies(data);
@@ -65,22 +61,28 @@ export default function Home() {
       <h1 className="text-center font-medium text-[calc(1.5rem_+_2vw)] my-10">Trending Movies</h1>
 
       <div className="">
-         {/* renders the filtered movies instead of data variable */}
+        {/* renders the filtered movies instead of data variable */}
         <ul className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-center gap-10">
           {filteredMovies.map((movie: any) => (
-            <Link href={`/movie/${movie?.id}`} key={movie?.id}>
-              <li>
-                <img src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`} alt={movie?.title} className=" max-w-[320px] w-full max-h-[390px] h-full rounded-lg object-cover" />
-                <h2>{movie?.title}</h2>
-                <div className="flex items-center gap-4">
-                  <p>{movie?.vote_average.toFixed(2)}</p>
-                  <div>
-                    <hr className="border-2 w-12" />
+            <div key={movie?.id}>
+              <Link href={`/movie/${movie?.id}`}>
+                <li>
+                  <img src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`} alt={movie?.title} className=" max-w-[320px] w-full max-h-[390px] h-full rounded-lg object-cover" />
+                  <h2>{movie?.title}</h2>
+                  <div className="flex items-center gap-4">
+                    <p>{movie?.vote_average.toFixed(1)}</p>
+                    <div>
+                      <hr className="border-2 w-12" />
+                    </div>
+                    <p>{movie?.release_date.slice(0, 4)}</p>
                   </div>
-                  <p>{movie?.release_date.slice(0, 4)}</p>
-                </div>
-              </li>
-            </Link>
+                </li>
+              </Link>
+              <div>
+                <Bookmark movieId={movie?.id} title={movie?.title} />
+              </div>
+            </div>
+
 
           ))}
         </ul>

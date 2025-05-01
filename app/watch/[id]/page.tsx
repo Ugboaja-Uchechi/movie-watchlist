@@ -1,9 +1,8 @@
 
 import React from 'react';
 import axios from 'axios';
-import Link from 'next/link';
 
-export default async function WatchMovie({ params }) {
+export default async function WatchMovie({ params }: { params: { id: string } }) {
   const { id } = params;
   const embedUrl = `https://vidsrc.icu/embed/movie/${id}`;
   const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
